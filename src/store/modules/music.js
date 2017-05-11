@@ -5,14 +5,14 @@ const state = {
 }
 
 const getters = {
-    booklist: state => state.list
+    musiclist: state => state.list
 }
 
 const actions = {
-    addBook({commit, state}, name){
+    addMusic({commit, state}, name){
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                commit({type: types.ADDBOOKITEM, name: name});
+                commit({type: types.ADDMUSICITEM, name: name});
                 resolve("添加成功！");
             }, 300)
         })
@@ -20,7 +20,7 @@ const actions = {
 }
 
 const mutations = {
-    [types.ADDBOOKITEM](state, payload){
+    [types.ADDMUSICITEM](state, payload){
         state.list.push(payload.name);
     }
 }

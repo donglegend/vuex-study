@@ -17,12 +17,7 @@ module.exports = {
             {
                 test: /\.js$/,
                 exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader',
-                    options: {
-                        presets: ["stage-0", "es2015"]
-                    }
-                }
+                loader: "babel-loader"
             }
         ]
     },
@@ -34,12 +29,12 @@ module.exports = {
             template: "./src/index.html",
             title: "vuex-study"
         }),
-        // new webpack.optimize.UglifyJsPlugin({
-        //     compress: {
-        //         warnings: false,
-        //         drop_console: false,
-        //     }
-        // })
+        new webpack.optimize.UglifyJsPlugin({
+            compress: {
+                warnings: false,
+                drop_console: true,
+            }
+        })
     ],
     devServer: {
         contentBase: path.join(__dirname, "dist"),

@@ -1,5 +1,6 @@
 <template>
     <div class="block">
+        <h3>小说</h3>
         <input type="text" placeholder="please enter book name!" v-model="enterName"/>
         <button class="btn" @click="handlebook">添加</button>
         <ul v-if="booklist.length > 0">
@@ -10,7 +11,7 @@
 </template>
 
 <script>
-    import {mapGetters, mapState, mapActions} from "vuex";
+    import {mapGetters, mapActions} from "vuex";
 
     export default {
         data() {
@@ -22,7 +23,6 @@
             ...mapGetters([
                 'booklist'
             ]),
-            // enterName: state => state.book.enterName
         },
 
         methods: {
@@ -30,7 +30,16 @@
                 'addBook'
             ]),
             handlebook(){
-                this.addBook(this.enterName)
+                if(!this.enterName){
+                    alert("请输入小说名称！");
+                    return;
+                }
+                this.addBook(this.enterName).then((data) => {
+                    alert(data);
+                    this.enterName = "";
+                }, (err) => {
+                    alert(err);
+                })
             }
         }
     }
